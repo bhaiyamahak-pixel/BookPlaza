@@ -1186,3 +1186,465 @@ body{
     }
 
 }
+/* =========================================
+   RESPONSIVE DESIGN FOR ALL SCREEN SIZES
+   BookPlaza
+========================================= */
+
+/* Prevent elements from becoming wider than the screen */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    overflow-x: clip;
+}
+
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* =========================================
+   RESPONSIVE NAVIGATION
+========================================= */
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: clamp(10px, 2vw, 30px);
+    width: 100%;
+    max-width: 100%;
+    padding: clamp(12px, 2vw, 25px);
+}
+
+nav a {
+    font-size: clamp(15px, 2vw, 25px) !important;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.user-menu {
+    flex-shrink: 0;
+}
+
+/* =========================================
+   RESPONSIVE HOMEPAGE BOOK DESIGN
+========================================= */
+
+.hero-book {
+    width: 100%;
+    max-width: 100%;
+    padding: clamp(10px, 3vw, 40px);
+}
+
+.book {
+    width: 100%;
+    max-width: 1100px;
+    min-width: 0;
+    height: auto;
+    min-height: 0;
+    margin: 0 auto;
+}
+
+.page {
+    min-width: 0;
+    overflow-wrap: break-word;
+    padding: clamp(15px, 3vw, 40px);
+}
+
+.page-content {
+    width: 100%;
+    max-width: 100%;
+}
+
+.page h1 {
+    font-size: clamp(28px, 4.5vw, 55px);
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+}
+
+.page h2 {
+    font-size: clamp(25px, 3.5vw, 42px);
+    line-height: 1.25;
+    overflow-wrap: anywhere;
+}
+
+.tagline {
+    font-size: clamp(15px, 2vw, 24px);
+    line-height: 1.6;
+}
+
+.right-page p {
+    font-size: clamp(15px, 1.8vw, 20px);
+    line-height: 1.7;
+    overflow-wrap: break-word;
+}
+
+.shop-btn {
+    max-width: 100%;
+    padding: 12px clamp(18px, 3vw, 40px);
+    font-size: clamp(15px, 1.8vw, 22px);
+    white-space: normal;
+}
+
+/* =========================================
+   HOMEPAGE FEATURES
+========================================= */
+
+.features {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    width: 100%;
+    margin-top: 30px;
+}
+
+.feature {
+    width: 100%;
+    min-width: 0;
+    text-align: center;
+    overflow-wrap: anywhere;
+}
+
+.feature h4 {
+    font-size: clamp(12px, 1.5vw, 18px);
+    line-height: 1.4;
+}
+
+.feature p {
+    font-size: clamp(11px, 1.2vw, 15px);
+    line-height: 1.5;
+}
+
+/* =========================================
+   CATEGORY AND BOOK GRIDS
+========================================= */
+
+.categories,
+.books {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 100%;
+}
+
+.category-card,
+.card {
+    min-width: 0;
+    max-width: 100%;
+    overflow-wrap: break-word;
+}
+
+.card img {
+    display: block;
+    width: 100%;
+    max-width: 180px;
+    height: 250px;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+/* Search forms should fit their parent */
+.hero-search-form,
+.hero-search-box,
+.category-search-box,
+.order-page {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+.hero-search-box input,
+.category-search-box input {
+    min-width: 0;
+    width: 100%;
+}
+
+/* Order and checkout pages */
+.order-page {
+    padding: clamp(15px, 4vw, 40px);
+}
+
+.order-field input,
+.order-field textarea {
+    max-width: 100%;
+    min-width: 0;
+}
+
+.order-book,
+.order-book-details,
+.order-card-header,
+.order-total,
+.order-footer {
+    min-width: 0;
+    max-width: 100%;
+    flex-wrap: wrap;
+}
+
+.orders-page,
+.orders-container {
+    width: 100%;
+    max-width: 100%;
+}
+
+/* =========================================
+   TABLET SCREENS
+========================================= */
+
+@media (max-width: 900px) {
+
+    .categories,
+    .books {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero-book {
+        padding: 18px;
+    }
+
+    .page {
+        padding: 22px;
+    }
+
+    .features {
+        gap: 8px;
+    }
+}
+
+/* =========================================
+   MOBILE PHONES
+========================================= */
+
+@media (max-width: 768px) {
+
+    /* Navigation becomes compact */
+    nav {
+        gap: 10px 16px;
+        padding: 15px 10px;
+    }
+
+    nav a {
+        font-size: 16px !important;
+    }
+
+    /* Stack the two book pages vertically */
+    .book {
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        border-radius: 12px;
+    }
+
+    .page {
+        width: 100%;
+        height: auto;
+        padding: 22px 16px;
+    }
+
+    .left-page {
+        border-right: none;
+        border-bottom: 4px solid #c9b28d;
+        border-radius: 12px 12px 0 0;
+    }
+
+    .right-page {
+        border-radius: 0 0 12px 12px;
+    }
+
+    .page h1 {
+        font-size: clamp(27px, 7vw, 40px);
+    }
+
+    .page h2 {
+        font-size: clamp(25px, 6vw, 36px);
+    }
+
+    .tagline {
+        margin: 18px 0;
+    }
+
+    .right-page p {
+        margin: 18px 0;
+    }
+
+    .right-page h3 {
+        margin-top: 25px;
+    }
+
+    .shop-btn {
+        margin: 15px 0;
+    }
+
+    .hero-search-form {
+        width: 100%;
+        margin-top: 18px;
+    }
+
+    /* Keep all three features inside the page */
+    .features {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px 10px;
+        margin-top: 25px;
+    }
+
+    .feature:last-child {
+        grid-column: 1 / -1;
+        max-width: 220px;
+        justify-self: center;
+    }
+
+    .feature h4 {
+        font-size: 14px;
+    }
+
+    .feature p {
+        font-size: 12px;
+    }
+
+    .category-card {
+        padding: 18px 10px;
+        font-size: 17px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
+    .card img {
+        height: 210px;
+    }
+
+    .order-book {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .order-footer {
+        gap: 10px;
+        font-size: 17px;
+    }
+
+    .order-card {
+        padding: 16px;
+    }
+
+    .orders-title,
+    .orders-container > h1 {
+        font-size: clamp(25px, 6vw, 34px);
+    }
+}
+
+/* =========================================
+   SMALL MOBILE PHONES
+========================================= */
+
+@media (max-width: 480px) {
+
+    nav {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px 8px;
+        padding: 14px 8px;
+    }
+
+    nav a {
+        font-size: 15px !important;
+        line-height: 1.4;
+        overflow-wrap: anywhere;
+    }
+
+    nav .user-menu {
+        grid-column: 1 / -1;
+        justify-self: center;
+    }
+
+    .hero-book {
+        padding: 8px;
+    }
+
+    .page {
+        padding: 20px 12px;
+    }
+
+    .page h1 {
+        font-size: clamp(25px, 7vw, 32px);
+    }
+
+    .page h2 {
+        font-size: clamp(23px, 6vw, 30px);
+    }
+
+    .shop-btn {
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+
+    .hero-search-box input {
+        padding: 10px 8px;
+        font-size: 12px;
+    }
+
+    .categories,
+    .books {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+    }
+
+    .card img {
+        height: 175px;
+    }
+
+    .order-total {
+        padding: 12px;
+        font-size: 15px;
+    }
+
+    .order-total .order-price {
+        font-size: 17px;
+    }
+
+    .no-orders {
+        padding: 30px 15px;
+    }
+}
+
+/* =========================================
+   VERY NARROW SCREENS
+========================================= */
+
+@media (max-width: 340px) {
+
+    .categories,
+    .books {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .page h1 {
+        font-size: 24px;
+    }
+
+    .page h2 {
+        font-size: 22px;
+    }
+
+    .features {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .feature:last-child {
+        grid-column: auto;
+    }
+}
