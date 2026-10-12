@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="mb-4">Your Cart</h2>
+{% for item in cart_items %}
+<div class="d-flex justify-content-between align-items-center bg-white p-3 mb-2 rounded shadow-sm">
+  <div>
+    <strong>{{ item.book.title }}</strong> × {{ item.qty }}
+  </div>
+  <div>
+    ₹{{ item.subtotal }}
+    <a href="{% url 'remove_from_cart' item.book.pk %}" class="btn btn-sm btn-outline-danger ms-2">Remove</a>
+  </div>
+</div>
+{% empty %}
+<p>Your cart is empty.</p>
+{% endfor %}
+{% if cart_items %}
+<h4 class="mt-4">Total: ₹{{ total }}</h4>
+<a href="{% url 'cart_place_order' %}" class="place-order-btn">Place Order</a>
+{% endif %}
+{% endblock %}

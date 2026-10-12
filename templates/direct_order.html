@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+
+{% block title %}Place Order - Book Plaza{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="order-page">
+
+        <h1>Place Your Order</h1>
+
+        <p class="order-subtitle">
+            Enter your delivery details to complete your order.
+        </p>
+
+        <hr>
+
+        <h2>Your Book</h2>
+
+        <div class="order-book">
+
+            {% if book.image %}
+                <img src="{{ book.image.url }}" alt="{{ book.title }}">
+            {% endif %}
+
+            <div>
+                <h3>{{ book.title }}</h3>
+
+                <p>
+                    <strong>Author:</strong>
+                    {{ book.author }}
+                </p>
+
+                <p class="order-price">
+                    ₹{{ book.price }}
+                </p>
+            </div>
+
+        </div>
+
+        <hr>
+
+        <h2>Delivery Details</h2>
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <div class="order-field">
+                <label for="customer_name">Full Name</label>
+
+                <input
+                    type="text"
+                    id="customer_name"
+                    name="customer_name"
+                    placeholder="Enter your full name"
+                    required>
+            </div>
+
+
+            <div class="order-field">
+                <label for="phone">Phone Number</label>
+
+                <input
+                    type="tel"
+                    id="phone"
+                    name="phone"
+                    placeholder="Enter your phone number"
+                    maxlength="15"
+                    required>
+            </div>
+
+
+            <div class="order-field">
+                <label for="address">Delivery Address</label>
+
+                <textarea
+                    id="address"
+                    name="address"
+                    rows="3"
+                    placeholder="Enter your complete address"
+                    required></textarea>
+            </div>
+
+
+            <div class="order-field">
+                <label for="city">City</label>
+
+                <input
+                    type="text"
+                    id="city"
+                    name="city"
+                    placeholder="Enter your city"
+                    required>
+            </div>
+
+
+            <div class="order-field">
+                <label for="pin_code">PIN Code</label>
+
+                <input
+                    type="text"
+                    id="pin_code"
+                    name="pin_code"
+                    placeholder="Enter your PIN code"
+                    maxlength="6"
+                    required>
+            </div>
+
+
+            <div class="order-total">
+
+                <strong>Total Amount:</strong>
+
+                <span class="order-price">
+                    ₹{{ book.price }}
+                </span>
+
+            </div>
+
+
+            <button type="submit" class="confirm-order-btn">
+                Confirm Order
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

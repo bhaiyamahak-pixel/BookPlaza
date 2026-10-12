@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="category-header">
+
+    <h1>{{ category|title }}</h1>
+
+    <p>Explore books available in this category.</p>
+
+</div>
+
+<!-- Search Bar -->
+<form method="GET"
+      action="{% url 'search_books' %}"
+      class="book-search-form category-search">
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            name="q" 
+            placeholder="Search books or authors..."
+            autocomplete="off"
+            required
+        >
+
+        <button type="submit">
+            🔍 Search
+        </button>
+
+    </div>
+
+</form>
+
+<div class="books">
+{% for book in books %}
+
+<div class="card">
+
+  <a href="{% url 'book_detail' book.pk %}">
+    <img src="{{ book.image.url }}" alt="{{ book.title }}">
+    <h3>{{ book.title }}</h3>
+  </a>
+
+  <p>{{ book.author }}</p>
+  <p>₹{{ book.price }}</p>
+
+  {% if book.stock > 0 %}
+
+ <div class="book-action-buttons">
+
+    <a href="{% url 'add_to_cart' book.pk %}?next={{ request.get_full_path|urlencode }}"
+       class="add-cart-btn">
+        Add to Cart
+    </a>
+
+    <a href="{% url 'direct_place_order' book.pk %}"
+       class="place-order-btn">
+        Place Order
+    </a>
+
+</div>
+
+{% else %}
+
+    <p class="out-of-stock">Out of stock</p>
+
+{% endif %}
+
+</div>
+
+{% empty %}
+
+<h3>No books found.</h3>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

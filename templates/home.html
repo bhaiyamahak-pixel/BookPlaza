@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<section class="hero-book">
+
+    <div class="book">
+
+        <!-- Left Page -->
+        <div class="page left-page">
+
+            <div class="page-content">
+
+                <h1>📚 Welcome to BookPlaza</h1>
+
+                <p class="tagline">
+                    Thousands of books waiting for you.
+                </p>
+
+                <a href="{% url 'categories' %}" class="shop-btn">Shop Now</a>
+                <!-- Search Books -->
+<form method="GET"
+      action="{% url 'search_books' %}"
+      class="hero-search-form">
+
+    <div class="hero-search-box">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="Search by book name or author..."
+            autocomplete="off"
+            required
+        >
+
+        <button type="submit">🔍</button>
+
+    </div>
+
+</form>
+
+                <div class="features">
+
+                    <div class="feature">
+                        🚚
+                        <h4>Free Delivery</h4>
+                        <p>Orders above ₹499</p>
+                    </div>
+
+                    <div class="feature">
+                        🔒
+                        <h4>Secure Payment</h4>
+                        <p>100% Safe Checkout</p>
+                    </div>
+
+                    <div class="feature">
+                        🎧
+                        <h4>24/7 Support</h4>
+                        <p>Always Here to Help</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Right Page -->
+        <div class="page right-page">
+
+            <div class="page-content">
+
+                <h2>About BookPlaza</h2>
+
+                <p>
+                    BookPlaza is your one-stop online bookstore designed for
+                    students, readers and book lovers.
+                </p>
+
+                <p>
+                    Explore Fiction, Academic, Self-Help, Mystery,
+                    Romance, Children's Books and much more.
+                </p>
+
+                <p>
+                    Our mission is to make reading affordable,
+                    enjoyable and accessible for everyone.
+                </p>
+
+                <h3>📖 Happy Reading!</h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

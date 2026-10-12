@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center">
+  <h2>Order Placed Successfully!</h2>
+  <p>Order #{{ order.id }} confirmed for {{ order.customer.name }}.</p>
+  <a href="{% url 'home' %}" class="btn btn-warm">Continue Browsing</a>
+</div>
+{% endblock %}

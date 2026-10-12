@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block title %}Search - Book Plaza{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <!-- Search Heading -->
+    <div class="text-center mb-4">
+        <h1 style="font-family:'Playfair Display',serif;">
+            Search Books
+        </h1>
+
+        {% if query %}
+            <p class="text-muted">
+                Search results for:
+                <strong>"{{ query }}"</strong>
+            </p>
+        {% endif %}
+    </div>
+
+
+    <!-- Search Bar -->
+    <form method="GET" action="{% url 'search_books' %}" class="book-search-form mb-5">
+
+        <div class="search-box">
+            <input
+                type="text"
+                name="q"
+                value="{{ query }}"
+                placeholder="Search by book name or author..."
+                autocomplete="off"
+            >
+
+            <button type="submit">
+                🔍 Search
+            </button>
+        </div>
+
+    </form>
+
+
+    <!-- Results -->
+    {% if query %}
+
+        {% if books %}
+
+            <div class="books">
+
+                {% for book in books %}
+
+                <div class="card">
+
+                    <a href="{% url 'book_detail' book.pk %}">
+
+                        {% if book.image %}
+                            <img src="{{ book.image.url }}" alt="{{ book.title }}">
+                        {% endif %}
+
+                        <h3>{{ book.title }}</h3>
+
+                    </a>
+
+                    <p>{{ book.author }}</p>
+
+                    <p>₹{{ book.price }}</p>
+
+                    {% if book.stock > 0 %}
+
+                        <a href="{% url 'add_to_cart' book.pk %}"
+                           class="add-cart-btn">
+                            Add to Cart
+                        </a>
+
+                    {% else %}
+
+                        <p class="out-of-stock">
+                            Out of stock
+                        </p>
+
+                    {% endif %}
+
+                </div>
+
+                {% endfor %}
+
+            </div>
+
+        {% else %}
+
+            <!-- No Results -->
+            <div class="no-search-results">
+
+                <div class="no-result-icon">
+                    📚
+                </div>
+
+                <h2>Book Not Found</h2>
+
+                <p>
+                    Sorry, we couldn't find any books matching
+                    "<strong>{{ query }}</strong>".
+                </p>
+
+                <p class="text-muted">
+                    Try searching with another book name or author.
+                </p>
+
+                <a href="{% url 'home' %}" class="search-home-btn">
+                    ← Back to Home
+                </a>
+
+            </div>
+
+        {% endif %}
+
+    {% else %}
+
+        <div class="no-search-results">
+
+            <div class="no-result-icon">
+                🔍
+            </div>
+
+            <h2>Search for a Book</h2>
+
+            <p>
+                Enter a book name or author to find books in Book Plaza.
+            </p>
+
+        </div>
+
+    {% endif %}
+
+</div>
+
+{% endblock %}

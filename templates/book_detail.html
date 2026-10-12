@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% block title %}{{ book.title }} - Book Plaza{% endblock %}
+
+{% block content %}
+<div class="row g-5 align-items-start">
+    <div class="col-md-6">
+        {% if book.image %}
+            <img src="{{ book.image.url }}" alt="{{ book.title }}"
+                 class="img-fluid rounded shadow" style="max-height:900px; width:100%; object-fit:cover;">
+        {% else %}
+            <img src="https://placehold.co/300x450/c17a4f/fff?text=No+Cover"
+                 class="img-fluid rounded shadow">
+        {% endif %}
+    </div>
+    <div class="col-md-6">
+        <h1 style="font-family:'Playfair Display',serif;">{{ book.title }}</h1>
+        <p class="fs-5 text-muted mb-1">by {{ book.author }}</p>
+        <hr>
+        <p class="fs-4 fw-bold" style="color:var(--terracotta);">₹{{ book.price }}</p>
+        <p><strong>Stock:</strong> {{ book.stock }} available</p>
+        <h5 class="mt-4">About this book</h5>
+        <p style="line-height:1.9;">{{ book.description }}</p>
+        <div class="d-flex gap-3 mt-4">
+
+    <a href="{% url 'add_to_cart' book.pk %}?next={{ request.get_full_path|urlencode }}"
+       class="btn btn-warm px-4">
+        Add to Cart
+    </a>
+
+    <a href="{% url 'direct_place_order' book.pk %}"
+       class="place-order-btn">
+        Place Order
+    </a>
+
+    <a href="{% url 'home' %}"
+       class="btn btn-outline-secondary">
+        ← Back
+    </a>
+
+</div>
+    </div>
+</div>
+{% endblock %}

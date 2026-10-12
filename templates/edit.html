@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %}Edit Book - Book Plaza{% endblock %}
+
+{% block content %}
+<section class="row justify-content-center">
+    <div class="col-md-6 col-sm-10">
+        <div class="card shadow-sm p-4 bg-white rounded">
+            <h2 class="h4 text-success mb-4">Edit Book Details</h2>
+
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label for="title" class="form-label fw-bold">Book Title</label>
+                    <input type="text" class="form-control" id="title" name="title" value="{{ book.title }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="author" class="form-label fw-bold">Author Name</label>
+                    <input type="text" class="form-control" id="author" name="author" value="{{ book.author }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="price" class="form-label fw-bold">Price (₹)</label>
+                    <input type="number" step="0.01" class="form-control" id="price" name="price" value="{{ book.price }}" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="category" class="form-label fw-bold">Category</label>
+                    <select class="form-control" id="category" name="category" required>
+                        <option value="fiction" {% if book.category == "fiction" %}selected{% endif %}>Fiction</option>
+                        <option value="non_fiction" {% if book.category == "non_fiction" %}selected{% endif %}>Non-Fiction</option>
+                        <option value="science" {% if book.category == "science" %}selected{% endif %}>Science</option>
+                        <option value="history" {% if book.category == "history" %}selected{% endif %}>History</option>
+                        <option value="self_help" {% if book.category == "self_help" %}selected{% endif %}>Self Help</option>
+                        <option value="biography" {% if book.category == "biography" %}selected{% endif %}>Biography</option>
+                        <option value="children" {% if book.category == "children" %}selected{% endif %}>Children</option>
+                        <option value="technology" {% if book.category == "technology" %}selected{% endif %}>Technology</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Current Cover Image</label><br>
+                    {% if book.image %}
+                        <img src="{{ book.image.url }}" alt="{{ book.title }}" style="max-width:150px;" class="mb-2 rounded"><br>
+                    {% endif %}
+                    <label for="image" class="form-label fw-bold">Replace Image (optional)</label>
+                    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+                </div>
+
+                <div class="mb-3">
+                    <label for="stock" class="form-label fw-bold">Stock</label>
+                    <input type="number" class="form-control" id="stock" name="stock" value="{{ book.stock }}">
+                </div>
+
+                <div class="mb-4">
+                    <label for="description" class="form-label fw-bold">Description</label>
+                    <textarea class="form-control" id="description" name="description" rows="3">{{ book.description }}</textarea>
+                </div>
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-success px-4">Update Book</button>
+                    <a href="{% url 'home' %}" class="btn btn-outline-secondary">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}

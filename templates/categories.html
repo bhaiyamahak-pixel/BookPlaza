@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Book Categories</h1>
+
+<!-- Category Search -->
+<form method="GET"
+      action="{% url 'search_books' %}"
+      class="category-page-search">
+
+    <div class="category-search-box">
+
+        <input
+            type="text"
+            name="q"
+            placeholder="Search by book name or author..."
+            autocomplete="off"
+            required
+        >
+
+        <button type="submit">
+            🔍 Search
+        </button>
+
+    </div>
+
+</form>
+
+<div class="categories">
+
+{% for value,name in categories %}
+
+<a href="{% url 'category_books' value %}" class="category-card">
+
+{{ name }}
+
+</a>
+
+{% endfor %}
+
+</div>
+
+{% endblock %}

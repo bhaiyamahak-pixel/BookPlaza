@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+
+{% block title %}Your Orders - Book Plaza{% endblock %}
+
+{% block content %}
+
+<div class="container py-5">
+
+    <div class="orders-page">
+
+        <h1 class="orders-title">Your Orders</h1>
+        <p class="orders-subtitle">
+            Here you can view all your previous orders.
+        </p>
+
+        {% if orders %}
+
+            {% for order in orders %}
+
+            <div class="order-card">
+
+                <!-- Order Header -->
+                <div class="order-card-header">
+                    <div>
+                        <h2>Order #BP{{ order.id }}</h2>
+                        <p>
+                            Ordered on:
+                            {{ order.order_date|date:"d M Y, h:i A" }}
+                        </p>
+                    </div>
+
+                    <div class="order-total">
+                        Total: ₹{{ order.total_amount }}
+                    </div>
+                </div>
+
+
+                <!-- Book Details -->
+                <div class="order-book-details">
+
+                    {% if order.book.image %}
+                        <img src="{{ order.book.image.url }}"
+                             alt="{{ order.book.title }}"
+                             class="order-book-image">
+                    {% endif %}
+
+                    <div class="order-book-info">
+
+                        <h3>{{ order.book.title }}</h3>
+
+                        <p>
+                            <strong>Author:</strong>
+                            {{ order.book.author }}
+                        </p>
+
+                        <p>
+                            <strong>Quantity:</strong>
+                            {{ order.quantity }}
+                        </p>
+
+                        <p>
+                            <strong>Price per book:</strong>
+                            ₹{{ order.book.price }}
+                        </p>
+
+                        <p class="book-total">
+                            <strong>Order Total:</strong>
+                            ₹{{ order.total_amount }}
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Delivery Details -->
+                <div class="delivery-details">
+
+                    <h3>Delivery Details</h3>
+
+                    <p>
+                        <strong>Name:</strong>
+                        {{ order.customer_name }}
+                    </p>
+
+                    <p>
+                        <strong>Phone:</strong>
+                        {{ order.phone }}
+                    </p>
+
+                    <p>
+                        <strong>Address:</strong>
+                        {{ order.address }}
+                    </p>
+
+                    <p>
+                        <strong>City:</strong>
+                        {{ order.city }}
+                    </p>
+
+                    <p>
+                        <strong>PIN Code:</strong>
+                        {{ order.pin_code }}
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        {% else %}
+
+            <div class="no-orders">
+                <h2>No Orders Yet</h2>
+                <p>You have not placed any orders yet.</p>
+
+                <a href="{% url 'home' %}" class="continue-shopping">
+                    Continue Shopping
+                </a>
+            </div>
+
+        {% endif %}
+
+    </div>
+
+</div>
+
+{% endblock %}
