@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Place Order - Book Plaza{% endblock %}
 
 {% block content %}
@@ -23,8 +23,9 @@
         <div class="order-book">
 
             {% if item.book.image %}
-                <img src="{{ item.book.image.url }}"
-                     alt="{{ item.book.title }}">
+                 <img src="{% static 'css/books/' %}{{ item.book.image.name|cut:'books/' }}"
+                    alt="{{ item.book.title }}"
+                    class="img-fluid">
             {% endif %}
 
             <div>

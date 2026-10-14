@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block title %}Your Orders - Book Plaza{% endblock %}
 
 {% block content %}
@@ -39,9 +39,11 @@
                 <div class="order-book-details">
 
                     {% if order.book.image %}
-                        <img src="{{ order.book.image.url }}"
-                             alt="{{ order.book.title }}"
+                        {% if order.book.image %}
+                           <img src="{% static 'css/books/' %}{{ order.book.image.name|cut:'books/' }}"
+                               alt="{{ order.book.title }}"
                              class="order-book-image">
+{% endif %}
                     {% endif %}
 
                     <div class="order-book-info">

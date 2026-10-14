@@ -43,7 +43,7 @@
                 <div class="mb-3">
                     <label class="form-label fw-bold">Current Cover Image</label><br>
                     {% if book.image %}
-                        <img src="{{ book.image.url }}" alt="{{ book.title }}" style="max-width:150px;" class="mb-2 rounded"><br>
+                        <img src="{{% static book.image.name%}}" alt="{{ book.title }}" style="max-width:150px;" class="mb-2 rounded"><br>
                     {% endif %}
                     <label for="image" class="form-label fw-bold">Replace Image (optional)</label>
                     <input type="file" class="form-control" id="image" name="image" accept="image/*">

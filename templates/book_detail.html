@@ -1,16 +1,18 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}{{ book.title }} - Book Plaza{% endblock %}
 
 {% block content %}
 <div class="row g-5 align-items-start">
     <div class="col-md-6">
-        {% if book.image %}
-            <img src="{{ book.image.url }}" alt="{{ book.title }}"
-                 class="img-fluid rounded shadow" style="max-height:900px; width:100%; object-fit:cover;">
-        {% else %}
-            <img src="https://placehold.co/300x450/c17a4f/fff?text=No+Cover"
-                 class="img-fluid rounded shadow">
-        {% endif %}
+       {% if book.image %}
+             <img src="{% static 'css/books/' %}{{ book.image.name|cut:'books/' }}"
+         alt="{{ book.title }}"
+         class="img-fluid">
+       {% else %}
+    <img src="https://placehold.co/300x450/c17a4f/fff?text=No+Cover"
+         class="img-fluid rounded shadow">
+{% endif %}
     </div>
     <div class="col-md-6">
         <h1 style="font-family:'Playfair Display',serif;">{{ book.title }}</h1>
